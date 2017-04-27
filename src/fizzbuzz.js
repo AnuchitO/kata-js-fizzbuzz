@@ -1,27 +1,40 @@
-(function(){function fizzBuzz (number){
-  if(isFizzBuzz(number)){
-    return "FizzBuzz";
+(function (context) {
+  function fizzBuzz(number) {
+    return fizz(number) + buzz(number) + sayNumber(number);
   }
-  if(isBuzz(number)){
-    return 'Buzz';
+
+  function fizz(number) {
+    return {
+      true: 'Fizz',
+      false: ''
+    }[isFizz(number)];
   }
-  if(isFizz(number)){
-    return 'Fizz';
+
+  function buzz(number) {
+    return {
+      true: 'Buzz',
+      false: ''
+    }[isBuzz(number)];
   }
-   return number.toString();
-}
 
-function isFizzBuzz(number){
-  return number % 15 === 0;
-}
+  function sayNumber(number) {
+    return {
+      true: '',
+      false: number.toString()
+    }[isFizz(number) || isBuzz(number)];
+  };
 
-function isFizz(number){
-  return number % 3 === 0;
-}
+  function isFizzBuzz(number) {
+    return number % 15 === 0;
+  }
 
-function isBuzz(number){
-  return number % 5 === 0;
-}
- 
- window.fizzBuzz = fizzBuzz;
-})()
+  function isFizz(number) {
+    return number % 3 === 0;
+  }
+
+  function isBuzz(number) {
+    return number % 5 === 0;
+  }
+
+  context.fizzBuzz = fizzBuzz;
+})(window)
